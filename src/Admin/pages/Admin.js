@@ -3,6 +3,7 @@ import CreateArticle from "../component/CreateArticle";
 import ShowAll from "../component/ShowAll";
 import CreateCategory from '../component/CreateCategory'
 import CreateUser from '../component/CreateUser'
+import { withRouter } from "react-router";
 class Admin extends Component {
   constructor(props) {
     super(props);
@@ -14,16 +15,21 @@ class Admin extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
   }
+  componentDidMount() {
+    if(this.props.location.state) {
+      this.setState({component: this.props.location.state.component })
+    }
 
+  }
   handleClick(e) {
     e.preventDefault();
     this.setState({ component: e.target.attributes.data.value });
   }
   render() {
     return (
-      <div className="m-t-4 bg-gray">
+      <div className="bg-gray">
         <div className="row">
-          <div className="col-12 col-md-3 p-4">
+          <div className="col-12 col-md-2 p-4">
             <h3 className="card-title">Welcome To Admin Dashboard</h3>
             <ul className="side-links">
               <li className={this.state.component == 'articles' ? 'active': ''}>
@@ -58,7 +64,7 @@ class Admin extends Component {
               </li>
             </ul>
           </div>
-          <div className="col-12 col-md-9 bg-orange p-4">
+          <div className="col-12 col-md-10 p-4">
             <div className="row">
               {this.state.component == "articles" ? (
                 <ShowAll show="articles" list={this.state.articles} />
@@ -67,11 +73,17 @@ class Admin extends Component {
               ) : this.state.component == "users" ? (
                 <ShowAll show="users" list={this.state.users} />
               ) : this.state.component == "create-article" ? (
-                <CreateArticle create="article" articles={this.state.articles} categories={this.state.categories} />
+                <CreateArticle create="article" articles={this.state.articles} categories={this.state.categories} 
+                handleNewArticle={this.props.handleNewArticle}
+                />
               ) : this.state.component == "create-category" ? (
-                <CreateCategory create="category" />
+                <CreateCategory create="category" 
+                handleNewCategory={this.props.handleNewCategory}
+                />
               ) : (
-                <CreateUser create="user" />
+                <CreateUser create="user" 
+                handleNewUser={this.props.handleNewUser}
+                />
               )}
             </div>
           </div>
@@ -81,4 +93,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default withRouter(Admin);

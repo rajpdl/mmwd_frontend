@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router';
 
 class User extends Component {
     constructor(props) {
@@ -9,15 +10,15 @@ class User extends Component {
         this.handleEdit = this.handleEdit.bind(this);
     }
     handleEdit() {
-        
+        this.props.history.push(`/admin/user/${this.props.id}`)
     }
     render() {
         return (
-            <div className="col-12 col-sm-6 col-md-4 card">
-                <h3 onClick={this.handleEdit}>{this.props.username}</h3>
+            <div className="col-12 col-md-6 card">
+                <h3 onClick={this.handleEdit} className="pointer">{this.props.username}</h3>
               </div>
         );
     }
 }
 
-export default User;
+export default withRouter(User);

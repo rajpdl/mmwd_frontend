@@ -376,6 +376,9 @@
 /* background color end */
 
 /* color start */
+.c-red {
+  color: red;
+}
 .c-white {
   color: rgb(212, 198, 198);
 }

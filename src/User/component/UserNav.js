@@ -10,6 +10,8 @@ class UserNav extends Component {
       unShownLinks: [],
     };
     this.handleLanguage = this.handleLanguage.bind(this);
+    this.handleBurger = this.handleBurger.bind(this);
+    this.handleDropdown = this.handleDropdown.bind(this);
   }
   componentDidMount() {
     let showLinks = this.state.links.filter((link, i) => i < 2);
@@ -21,11 +23,48 @@ class UserNav extends Component {
   handleLanguage(e) {
     this.props.handleChangeLanugage(e.target.innerText);
   }
+  handleBurger(e) {
+    const burger = document.querySelector(".burger"),
+      navLinks = document.querySelector(".nav-links"),
+      linkLists = document.querySelectorAll(".nav-links li"),
+      links = document.querySelectorAll(".nav-links li a");
+
+    navLinks.classList.toggle("nav-active");
+    linkLists.forEach((link, i) => {
+      if (link.style.animation) {
+        link.style.animation = "";
+      } else {
+        link.style.animation = `navLinksFadeIn 0.5s ease-in-out forwards 0s`;
+      }
+    });
+    burger.classList.toggle("burger-icon");
+
+    // links.forEach((link, i) => {
+    //   link.addEventListener("click", () => {
+    //     navLinks.classList.remove("nav-active");
+    //     burger.classList.remove("burger-icon");
+    //   });
+    // });
+  }
+  handleDropdown() {
+    const dropdown = document.querySelector(".dropdown"),
+      dropdownLinks = document.querySelector(".dropdown-links");
+      console.log(dropdown);
+    if (dropdown !== null) {
+      dropdownLinks.classList.toggle("dropdown-active");
+    }
+  }
+  handleLink() {
+    const burger = document.querySelector(".burger"),
+      navLinks = document.querySelector(".nav-links");
+    navLinks.classList.remove("nav-active");
+    burger.classList.remove("burger-icon");
+  }
   render() {
     return (
       <div className="navigation">
         <nav>
-          <div className="burger">
+          <div className="burger" onClick={this.handleBurger}>
             <div className="line1"></div>
             <div className="line2"></div>
             <div className="line3"></div>
@@ -37,12 +76,12 @@ class UserNav extends Component {
           </div>
           <ul className="nav-links">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" onClick={this.handleLink}>Home</Link>
             </li>
             {this.state.showLinks.map((link, i) => {
               return (
                 <li key={i}>
-                  <Link to={"/" + link.id}>
+                  <Link to={"/" + link.id} onClick={this.handleLink}>
                     {this.props.language == "EN"
                       ? link.name.toUpperCase()
                       : link.name_in_mm}
@@ -50,13 +89,13 @@ class UserNav extends Component {
                 </li>
               );
             })}
-            <li className="dropdown">
+            <li className="dropdown" onClick={this.handleDropdown}>
               {this.props.language == "EN" ? "See More" : "ဆက်ကြည့်"}
               <ul className="dropdown-links">
                 {this.state.unShownLinks.map((link, i) => {
                   return (
                     <li key={i}>
-                      <Link to={"/" + link.id}>
+                      <Link to={"/" + link.id} onClick={this.handleLink}>
                         {this.props.language == "EN"
                           ? link.name.toUpperCase()
                           : link.name_in_mm}

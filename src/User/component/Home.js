@@ -18,8 +18,8 @@ class Home extends Component {
       return (
         <MasterPage
           language={this.props.language}
-          category={this.state.category}
-          articles={this.state.allArticles}
+          category={this.props.category}
+          articles={this.props.allArticles}
         />
       );
     } else if(!this.props.isAdmin){

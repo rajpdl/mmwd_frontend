@@ -12,7 +12,6 @@ class ShowAll extends Component {
     };
   }
   render() {
-    console.log(this.props.list);
     if (this.props.show == "articles") {
       return this.props.list.map((article, i) => {
         return <Article

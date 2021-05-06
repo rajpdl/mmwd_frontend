@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 class Article extends Component {
     render() {
-      console.log('it');
         return(
             <div className="col-12 col-sm-6 col-md-4 card">
                 <h2 className="card-title">{this.props.title}</h2>

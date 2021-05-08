@@ -31,7 +31,9 @@ class Create extends Component {
         });
       });
     });
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      console.log(e.target.value);
+    });
   }
   handleCancel() {
     this.setState({ title: "" }, () => {
@@ -148,7 +150,7 @@ class Create extends Component {
             <option>Select one category...</option>
             {this.props.categories.map((category, i) => {
               return (
-                <option key={i} value={category.id}>
+                <option key={i} value={category._id}>
                   {category.name}
                 </option>
               );

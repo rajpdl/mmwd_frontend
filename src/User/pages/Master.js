@@ -9,13 +9,16 @@ class Master extends Component {
     };
   }
   componentDidMount() {
-    let articles = this.props.articles.filter(
-      (article) => article.categoryId == this.props.category.id
-    );
-    this.setState({ articles });
+    if (this.props.articles.length > 0) {
+      let articles = this.props.articles.filter(
+        (article) => article.categoryId == this.props.category._id
+      );
+      this.setState({ articles });
+    }
   }
   render() {
-    return (
+    console.log(this.props.articles);
+    return this.props.articles.length > 0 ? (
       <div className="container m-t-4">
         <h2>
           {this.props.language == "EN"
@@ -24,7 +27,10 @@ class Master extends Component {
         </h2>
         {this.state.articles.length > 0 ? (
           <div className="row">
-            <ArticleList articles={this.state.articles} language={this.props.language} />
+            <ArticleList
+              articles={this.state.articles}
+              language={this.props.language}
+            />
           </div>
         ) : (
           <div className="row">
@@ -32,6 +38,8 @@ class Master extends Component {
           </div>
         )}
       </div>
+    ) : (
+      <h2>It has nothing to show you.</h2>
     );
   }
 }

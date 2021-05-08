@@ -1,6 +1,5 @@
-.navigation {
-
-    background-color: gray;
+body {
+    background-color: rgba(104, 103, 103, 0.575);
 }
 nav {
     min-height: 8vh;
@@ -10,11 +9,9 @@ nav {
     align-items: center;
     position: relative;
 }
-.logo {
-    letter-spacing: 2px;
-}
 .logo h2 a {
-    color: black;
+    letter-spacing: 2px;
+    color: rgb(219, 209, 209);
     text-decoration: none;
 }
 .nav-links {
@@ -28,7 +25,8 @@ nav {
     margin-left: 25px;
 }
 .nav-links a {
-    color: black;
+    cursor: pointer;
+    color: rgb(219, 209, 209);
     text-decoration: none;
     transition: all 0.3s ease-in-out 0s;
 }
@@ -36,10 +34,11 @@ nav {
     color: rgb(230, 76, 76);
 }
 .dropdown {
+    color: rgb(219, 209, 209);
     cursor: pointer;
 }
 .dropdown:hover {
-    color: blue;
+    color: rgb(94, 94, 216);
 }
 .dropdown-links {
     display: none;
@@ -47,7 +46,7 @@ nav {
     position: absolute;
     top: 8vh;
     width: 13%;
-    background-color: gray;
+    background-color: #222;
     padding: 8px;
     border-radius: 0 0 5px 5px;
 }
@@ -60,7 +59,7 @@ nav {
     border-bottom: 1px dashed white;
 }
 .dropdown-links a {
-    color: black;
+    color: rgb(219, 209, 209);
     text-decoration: none;
 }
 .burger {
@@ -69,7 +68,7 @@ nav {
 .burger div {
     width: 20px;
     height: 3px;
-    background-color: black;
+    background-color: rgb(219, 209, 209);
     margin: 2px;
 }
 .side-adjust {
@@ -122,12 +121,16 @@ nav {
 .showcase h1:hover::before {
     display: inline-block;
 }
-footer h1 {
+footer h3 {
     text-align: center;
+    color: rgb(219, 209, 209);;
 }
 button a {
     text-decoration: none;
     color: black;
+}
+.language {
+    color: indianred;
 }
 /* Admin Side Bar */
 .side-links {
@@ -141,6 +144,9 @@ button a {
     cursor: pointer;
     text-decoration: none;
     color: black;
+}
+.sideBar {
+    height: 92vh;
 }
 @media screen and ( max-width: 760px) {
     .side-adjust {
@@ -162,7 +168,7 @@ button a {
         top: 8vh;
         width: 40%;
         height: 92vh;
-        background: grey;
+        background: #222;
         display: inline-block;
         padding: 0 5px;
         transform: translateX(-200%);

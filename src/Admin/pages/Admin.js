@@ -8,10 +8,7 @@ class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      component: "articles",
-      articles: this.props.articles,
-      categories: this.props.categories,
-      users: this.props.users,
+      component: "articles"
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -29,8 +26,8 @@ class Admin extends Component {
     return (
       <div className="bg-gray">
         <div className="row">
-          <div className="col-12 col-md-2 p-4">
-            <h3 className="card-title">Welcome To Admin Dashboard</h3>
+          <div className="col-12 col-md-2 p-4 sideBar">
+            <h3 className="card-title c-white">Welcome To Admin Dashboard</h3>
             <ul className="side-links">
               <li className={this.state.component == 'articles' ? 'active': ''}>
                 <a href="#" data="articles" onClick={this.handleClick}>
@@ -67,13 +64,13 @@ class Admin extends Component {
           <div className="col-12 col-md-10 p-4">
             <div className="row">
               {this.state.component == "articles" ? (
-                <ShowAll show="articles" list={this.state.articles} />
+                <ShowAll show="articles" list={this.props.articles} />
               ) : this.state.component == "categories" ? (
-                <ShowAll show="categories" list={this.state.categories} />
+                <ShowAll show="categories" list={this.props.categories} />
               ) : this.state.component == "users" ? (
-                <ShowAll show="users" list={this.state.users} />
+                <ShowAll show="users" list={this.props.users} />
               ) : this.state.component == "create-article" ? (
-                <CreateArticle create="article" articles={this.state.articles} categories={this.state.categories} 
+                <CreateArticle create="article" articles={this.props.articles} categories={this.props.categories} 
                 handleNewArticle={this.props.handleNewArticle}
                 />
               ) : this.state.component == "create-category" ? (

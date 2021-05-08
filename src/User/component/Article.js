@@ -8,7 +8,9 @@ class Article extends Component {
                 <h2 className="card-title">{this.props.title}</h2>
                 <div className="card-body">
                   <p>{this.props.language == 'EN'? this.props.description : this.props.description_in_mm}</p>
+                  <div className="btn-group">
                   <button className="btn m-t-4"><Link to={`/detail/${this.props.id}`}> Read More </Link></button>
+                  </div>
                 </div>
               </div>
         );

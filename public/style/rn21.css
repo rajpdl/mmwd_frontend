@@ -174,19 +174,19 @@
 /*Grid Section End*/
 /*s section start */
 .s-group {
-    text-align: center;
-     margin-bottom: 16px;
+  text-align: center;
+  margin-bottom: 16px;
 }
 .s-title {
-    text-align: center;
-    font-size: 18px;
+  text-align: center;
+  font-size: 18px;
 }
 .s-item {
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    border-radius: 100px;
-    margin: 16px;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  margin: 16px;
 }
 /*s section end*/
 /* Form Section Start */
@@ -197,16 +197,16 @@
   margin: auto;
 }
 .f-600 {
-    max-width: 600px;
-    padding: 16px 0;
-    margin: auto;
+  max-width: 600px;
+  padding: 16px 0;
+  margin: auto;
 }
 .f-title {
-    text-align: center;
-    margin-bottom: 16px;
+  text-align: center;
+  margin-bottom: 16px;
 }
 .f-group {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 .input-field {
   border: 0;
@@ -231,7 +231,7 @@
   top: 10px;
   right: 10px;
   display: block;
-  content: '';
+  content: "";
   width: 20px;
   height: 20px;
   background-color: white;
@@ -252,13 +252,13 @@
   background-color: rgb(207, 193, 193);
 }
 .select-field-h {
-    width: 100%;
-    padding: 8px 0;
-    position: relative;
+  width: 100%;
+  padding: 8px 0;
+  position: relative;
 }
 
 .radio-field {
-    padding: 20px;
+  padding: 20px;
 }
 
 .input-field:focus {
@@ -313,8 +313,10 @@
 /* card start */
 .card {
   margin: 10px 0;
-  box-shadow: 1px 1px 2px rgb(180, 171, 171), -1px -1px 2px rgb(212, 198, 198);
-  padding: 10px;
+  box-shadow: 
+  1px 1px 4px rgb(212, 198, 198),
+  -1px -1px 2px rgb(212, 198, 198);
+  padding: 6px 4px;
 }
 .card-image {
   width: 200px;
@@ -340,6 +342,9 @@
   background-color: rgba(8, 114, 114, 0.664);
   border-radius: 3px;
   padding: 8px;
+}
+.card-status {
+  margin-top: 8px;
 }
 /* card end */
 
@@ -398,7 +403,7 @@
 
 /* margin start */
 .m-auto {
-    margin: auto;
+  margin: auto;
 }
 
 .m-4 {

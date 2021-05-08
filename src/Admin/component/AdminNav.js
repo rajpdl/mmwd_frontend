@@ -38,7 +38,7 @@ class AdminNav extends Component {
     }
   render() {
     return (
-      <div className="navigation">
+      <div className="navigation bg-dark">
         <nav>
           <div className="burger" onClick={this.handleBurger}>
             <div className="line1"></div>

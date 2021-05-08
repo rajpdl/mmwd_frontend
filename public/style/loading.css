@@ -1,0 +1,30 @@
+.loading {
+    max-width: 200px;
+    height: 200px;
+    background: linear-gradient(orange, gray, skyblue, green, blue);
+    margin: auto;
+    position: relative;
+    top: 20vh;
+    animation: loading 1s infinite linear 0s;
+    border-radius: 100%;
+}
+.loading div {
+    max-width: 150px;
+    height: 150px;
+    background-color: white;
+    margin: auto;
+    position: inherit;
+    top: 25px;
+    border-radius: 100%;
+}
+@keyframes loading{
+    0% { transform: rotate(0deg);}
+    50% { transform: rotate(180deg);}
+    100% { transform: rotate(360deg);}
+    /* 0% { background: linear-gradient(red, orange)}
+    10% { background: linear-gradient(orange, green) }
+    20% { background: linear-gradient(green, teal)}
+    30% { background: linear-gradient(teal, gray);}
+    40% {background: linear-gradient(gray, skyblue);}
+    100% {background: linear-gradient(teal, red);} */
+}

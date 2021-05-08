@@ -5,12 +5,13 @@ class ArticleDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.match.params.id,
+      _id: this.props.match.params.id,
       title: "",
       code: "",
       description: "",
       description_in_mm: "",
       categoryId: "",
+      isFeatured: false,
       title_error: "",
       code_error: "",
       description_error: "",
@@ -29,14 +30,17 @@ class ArticleDetail extends Component {
     this.handleArticle();
   }
   handleArticle() {
-    let article = this.props.articles.filter(
-      (article) => article.id == this.state.id
-    )[0];
-    this.setState({ title: article.title });
-    this.setState({ code: article.code });
-    this.setState({ description: article.description });
-    this.setState({ description_in_mm: article.description_in_mm });
-    this.setState({ categoryId: article.categoryId });
+    if (this.props.articles.length > 0) {
+      let article = this.props.articles.filter(
+        (article) => article._id == this.state._id
+      )[0];
+      this.setState({ title: article.title });
+      this.setState({ code: article.code });
+      this.setState({ description: article.description });
+      this.setState({ description_in_mm: article.description_in_mm });
+      this.setState({ categoryId: article.categoryId });
+      this.setState({ isFeatured: article.isFeatured });
+    }
   }
   handleBack() {
     this.props.history.push("/admin", { component: "articles" });
@@ -51,7 +55,16 @@ class ArticleDetail extends Component {
         });
       });
     });
-    this.setState({ [e.target.name]: e.target.value });
+    const name = e.target.name,
+      value = e.target.value;
+    console.log(name, value);
+    if (name == 'Featured' && value == "on") {
+      this.setState({ isFeatured: true });
+    }else if (name == 'notFeatured' && value == "on") {
+      this.setState({ isFeatured: false });
+    }else{
+      this.setState({ [name]: value });
+    }
   }
 
   handleCancel() {
@@ -88,25 +101,35 @@ class ArticleDetail extends Component {
       console.log("form is ready to submit");
       console.log(this.state);
       this.props.handleEditArticle({
-        id: this.state.id,
+        _id: this.state._id,
         title: this.state.title,
         code: this.state.code,
         description: this.state.description,
         description_in_mm: this.state.description_in_mm,
         categoryId: this.state.categoryId,
+        isFeatured: this.state.isFeatured
       });
-      alert(`Successfully updated the article with "${this.state.title}" title.`);
-      this.handleCancel();
+      alert(
+        `Successfully updated the article with "${this.state.title}" title.`
+      );
     }
   }
   handleDelete() {
-    this.props.handleDeleteArticle(this.state.id);
-    this.props.history.push('/admin', {component: 'articles'});
+    const result = window.confirm(
+      `Are you sure you want to delete "${this.state.title}" Article?`
+    );
+    if (result) {
+      this.props.handleDeleteArticle(this.state._id);
+      this.props.history.push("/admin", { component: "articles" });
+    } else {
+      console.log(result);
+    }
   }
   handleFocus(e) {
     this.setState({ title_error: "You cannot change the title." });
   }
   render() {
+    console.log(this.state.isFeatured);
     if (this.props.isAdmin) {
       return (
         <div className="container">
@@ -160,6 +183,22 @@ class ArticleDetail extends Component {
               <p className="c-red">{this.state.description_in_mm_error}</p>
             </div>
             <div className="f-group">
+              <input
+                type="radio"
+                name="Featured"
+                checked={this.state.isFeatured ? true : false}
+                onChange={this.handleChange}
+              />{" "}
+              Featured
+              <input
+                type="radio"
+                name="notFeatured"
+                checked={!this.state.isFeatured ? true : false}
+                onChange={this.handleChange}
+              />{" "}
+              Not Featured
+            </div>
+            <div className="f-group">
               <select
                 className="input-field-h p-l-4"
                 name="categoryId"
@@ -169,7 +208,7 @@ class ArticleDetail extends Component {
                 <option>Select one category...</option>
                 {this.props.categories.map((category, i) => {
                   return (
-                    <option key={i} value={category.id}>
+                    <option key={i} value={category._id}>
                       {category.name}
                     </option>
                   );

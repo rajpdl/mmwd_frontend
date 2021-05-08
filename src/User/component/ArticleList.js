@@ -8,7 +8,7 @@ class ArticleList extends Component {
       return (
         <Article
           key={i}
-          id={article.id}
+          id={article._id}
           title={article.title}
           description={article.description}
           description_in_mm={article.description_in_mm}

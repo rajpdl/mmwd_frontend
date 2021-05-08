@@ -104,7 +104,6 @@ class Create extends Component {
         <div className="f-group">
           <input
             type="password"
-            id="password"
             className="input-field-h p-l-4"
             placeholder="Confirm password again..."
             name="confirmPassword"
